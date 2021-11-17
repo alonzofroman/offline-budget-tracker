@@ -2,9 +2,9 @@ const WebPackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 
 const config = {
-    entry: 'index.js',
+    entry: '/public/index.js',
     output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/public/dist',
         filename: 'bundle.js',
     },
     mode: 'development',
@@ -33,7 +33,7 @@ const config = {
             short_url: '/',
             icons: [
                 {
-                src: path.resolve('/icons/icon-512x512.png'),
+                src: path.resolve('./public/icons/icon-512x512.png'),
                 sizes: [192, 512],
                 destination: path.join('icons')
                 }
