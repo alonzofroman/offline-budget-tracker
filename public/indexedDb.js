@@ -41,7 +41,7 @@ function checkDatabase() {
                     'Content-Type': 'application/json'
                 }
             }).then((response) => response.json()).then(() => {
-                transaction = db.transaction(['pending'], 'readwrite');
+                const transaction = db.transaction(['pending'], 'readwrite');
                 const store = transaction.objectStore('pending');
                 store.clear();
             });
