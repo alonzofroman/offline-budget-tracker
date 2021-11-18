@@ -5,6 +5,8 @@ const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/styles.css',
+    '/index.js',
+    '/dist/manifest.json',
     '/dist/bundle.js',
     '/icons/icon-192x192.png',
     'icons/icon-512x512.png'
@@ -29,13 +31,13 @@ self.addEventListener('activate', function (evt) {
 });
 
 self.addEventListener('fetch', function (evt) {
-    if (evt.request.url.includes('api/')) {
+    if (evt.request.url.includes('api/transaction')) {
         evt.respondWith(caches.open(DATA_CACHE_NAME).then(cache => {
             return fetch(evt.request).then(response => {
                 if (response.status === 200) {
                     cache.put(evt.request.url, response.clone());
+                    return response;
                 }
-                return response;
             }).catch(err => {
                 return cache.match(evt.request);
             })
