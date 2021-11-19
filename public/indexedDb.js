@@ -24,6 +24,7 @@ function saveRecord (data) {
     const transaction = db.transaction(['pending'], 'readwrite');
     const store = transaction.objectStore('pending');
     store.add(data);
+    console.log(data);
 };
 
 function checkDatabase() {
@@ -40,7 +41,7 @@ function checkDatabase() {
                     Accept: 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 }
-            }).then((response) => response.json()).then(() => {
+            }).then(response => response.json()).then(() => {
                 const transaction = db.transaction(['pending'], 'readwrite');
                 const store = transaction.objectStore('pending');
                 store.clear();
